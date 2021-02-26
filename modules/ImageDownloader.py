@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import json
@@ -10,8 +11,6 @@ MediaUrl    = "https://upload.twitter.com/1.1/media/upload.json"
 TextUrl     = "https://api.twitter.com/1.1/statuses/update.json"
 TimeLineUrl = "https://api.twitter.com/1.1/statuses/user_timeline.json"
 
-GetCount = 5
-
 FolderName = "./images/"
 
 ConvertYearFormat = Utilities.MakeConvertDateFormat('%a %b %d %H:%M:%S %z %Y', '%Y')
@@ -19,7 +18,7 @@ ConvertMonthFormat = Utilities.MakeConvertDateFormat('%a %b %d %H:%M:%S %z %Y', 
 ConvertDayFormat = Utilities.MakeConvertDateFormat('%a %b %d %H:%M:%S %z %Y', '%d')
 
 
-def run(Keys,Params):
+def run(Keys,Params,GetCount):
     Num = 0
     Twitter = SetAPI(Keys)
     if Params['max_id'] == '0':
@@ -34,7 +33,7 @@ def run(Keys,Params):
     return Params
         
 def SetAPI(Keys):
-    Twitter = OAuth1Session(Keys['API_KEY'], Keys['API_KEY_SECRET'], Keys['ACCESS_TOKEN_KEY'], Keys['ACCESS_TOKEN_SECRET'])
+    Twitter = OAuth1Session(Keys['API_KEY'], Keys['API_SECRET'], Keys['ACCESS_TOKEN'], Keys['ACCESS_SECRET'])
     return Twitter
 
 def GetTimeLine(Twitter,Params):

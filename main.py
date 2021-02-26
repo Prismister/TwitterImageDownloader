@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 from modules import ImageDownloader
@@ -8,22 +9,23 @@ config_ini.read('config.ini', encoding='utf-8')
 
 Keys = {
     "API_KEY"               : config_ini.get('Env','API_KEY'),
-    "API_KEY_SECRET"        : config_ini.get('Env','API_KEY_SECRET'),
-    "ACCESS_TOKEN_KEY"      : config_ini.get('Env','ACCESS_TOKEN_KEY'),
-    "ACCESS_TOKEN_SECRET"   : config_ini.get('Env','ACCESS_TOKEN_SECRET')
+    "API_SECRET"            : config_ini.get('Env','API_SECRET'),
+    "ACCESS_TOKEN"          : config_ini.get('Env','ACCESS_TOKEN'),
+    "ACCESS_SECRET"         : config_ini.get('Env','ACCESS_SECRET')
 }
 
 Params = {
     "screen_name"           : config_ini.get('Params','SCREEN_NAME'),
     "count"                 : config_ini.get('Params','COUNT'),
-    "include_entities"      : config_ini.get('Params','INCLUDE_ENTITIES'),
+    "include_entities"      : 'True',
     "exclude_replies"       : config_ini.get('Params','EXCLUDE_REPLIES'),
     "include_rts"           : config_ini.get('Params','INCLUDE_RTS'),
     "max_id"                : config_ini.get('Params','MAX_ID')
 }
 
 def main():
-    NewParams = ImageDownloader.run(Keys,Params)
+    GetCount = 5
+    NewParams = ImageDownloader.run(Keys,Params,GetCount)
     config_ini.set('Params', 'MAX_ID', str(NewParams['max_id']))
     with open('config.ini', 'w') as file:
         config_ini.write(file)
