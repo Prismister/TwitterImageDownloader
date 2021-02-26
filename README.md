@@ -25,13 +25,13 @@ pip install OAuth1Session
         - access_secret
     - Params Field
         - screen_name
-            Screen name of the user for whom you want to retrieve the image
+           - Screen name of the user for whom you want to retrieve the image
         - count
-            Number of timelines to retrieve at a time
+           - Number of timelines to retrieve at a time
         - exclude_replies
-            Whether or not to include replies
+           - Whether or not to include replies
         - include_rts
-            Whether or not to include retweets
+           - Whether or not to include retweets
         - max_id
 
 2. run "main.py".
